@@ -12,6 +12,6 @@ public class OnPlayerConnect {
         playerLogin.setLoggedIn(false);
         player.setInvulnerable(true);
         player.sendMessage(new LiteralText("§9Welcome to the server, in order to play, you must log in.\n§eLog in using /login and register using /register"), false);
-        player.networkHandler.sendPacket(new TitleS2CPacket(TitleS2CPacket.Action.TITLE, new LiteralText("§aIdentify yourself")));
+        player.networkHandler.sendPacket(new TitleS2CPacket(new LiteralText("§aIdentify yourself")));
     }
 }
