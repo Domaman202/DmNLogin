@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ServerPlayNetworkHandler.class)
+@Mixin(value = ServerPlayNetworkHandler.class)
 public class ServerPlayNetworkHandlerMixin {
     @Inject(method = "onPlayerMove", at = @At("HEAD"), cancellable = true)
     public void onPlayerMove(PlayerMoveC2SPacket packet, CallbackInfo ci) {
@@ -28,7 +28,7 @@ public class ServerPlayNetworkHandlerMixin {
         }
     }
 
-    @Inject(method = "onGameMessage", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onGameMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
         if (!OnGameMessage.canSendMessage((ServerPlayNetworkHandler) (Object) this, packet)) {
             ci.cancel();
