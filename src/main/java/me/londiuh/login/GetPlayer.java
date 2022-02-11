@@ -1,7 +1,7 @@
 package me.londiuh.login;
 
-import me.londiuh.login.PlayerLogin;
 import net.minecraft.server.network.ServerPlayerEntity;
+
 import java.util.HashMap;
 import java.util.UUID;
 

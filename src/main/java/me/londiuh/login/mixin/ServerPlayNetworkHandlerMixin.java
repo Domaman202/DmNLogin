@@ -1,7 +1,7 @@
 package me.londiuh.login.mixin;
 
+import me.londiuh.login.LoginMod;
 import me.londiuh.login.listeners.OnGameMessage;
-import me.londiuh.login.listeners.OnPlayerAction;
 import me.londiuh.login.listeners.OnPlayerMove;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
@@ -20,10 +20,10 @@ public class ServerPlayNetworkHandlerMixin {
             ci.cancel();
         }
     }
-    
+
     @Inject(method = "onPlayerAction", at = @At("HEAD"), cancellable = true)
     public void onPlayerAction(PlayerActionC2SPacket packet, CallbackInfo ci) {
-        if (!OnPlayerAction.canInteract((ServerPlayNetworkHandler) (Object) this)) {
+        if (!LoginMod.getPlayer(((ServerPlayNetworkHandler) (Object) this).player).isLoggedIn()) {
             ci.cancel(); // TODO: breaking a block desyncs with server
         }
     }
