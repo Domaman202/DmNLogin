@@ -22,7 +22,7 @@ import java.util.concurrent.CompletableFuture;
 public abstract class PlayerManagerMixin {
     @Inject(method = "onPlayerConnect", at = @At("TAIL"))
     public void onPlayerConnect(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
-        LoginMod.getPlayer(player).loggedIn = false;
+        LoginMod.getPlayer(player).setLoggedIn(false);
         player.setInvulnerable(true);
         player.sendMessage(new LiteralText("§9Welcome to the server, in order to play, you must log in.\n§eLog in using /login and register using /register"), false);
         player.networkHandler.sendPacket(new TitleS2CPacket(new LiteralText("§aIdentify yourself")));
