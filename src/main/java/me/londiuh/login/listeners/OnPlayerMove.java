@@ -10,10 +10,9 @@ public class OnPlayerMove {
     public static boolean canMove(ServerPlayNetworkHandler networkHandler) {
         ServerPlayerEntity player = networkHandler.player;
         PlayerLogin playerLogin = LoginMod.getPlayer(networkHandler.player);
-        boolean isLoggedIn = playerLogin.isLoggedIn();
-        if (!isLoggedIn) {
+        boolean isLoggedIn = playerLogin.loggedIn;
+        if (!isLoggedIn)
             player.teleport(player.getX(), player.getY(), player.getZ()); // teleport to sync client position
-        }
         return isLoggedIn;
     }
 }

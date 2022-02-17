@@ -12,9 +12,8 @@ public class OnGameMessage {
         PlayerLogin playerLogin = LoginMod.getPlayer(player);
         String message = packet.getChatMessage();
         // TODO: config to allow more commands when you're not logged
-        if (!playerLogin.isLoggedIn() && (message.startsWith("/login") || message.startsWith("/register"))) {
+        if (!playerLogin.loggedIn && (message.startsWith("/login") || message.startsWith("/register")))
             return true;
-        }
-        return playerLogin.isLoggedIn();
+        return playerLogin.loggedIn;
     }
 }
