@@ -3,10 +3,11 @@
   "id": "login",
   "version": "${version}",
 
-  "name": "Login",
+  "name": "DmNLogin",
   "description": "Protection for offline-mode servers",
   "authors": [
-    "Londiuh"
+    "Londiuh",
+    "DomamaN202"
   ],
   "contact": {
     "homepage": "https://github.com/Londiuh/login",

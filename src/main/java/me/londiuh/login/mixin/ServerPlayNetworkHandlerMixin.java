@@ -23,7 +23,7 @@ public class ServerPlayNetworkHandlerMixin {
 
     @Inject(method = "onPlayerAction", at = @At("HEAD"), cancellable = true)
     public void onPlayerAction(PlayerActionC2SPacket packet, CallbackInfo ci) {
-        if (!LoginMod.getPlayer(((ServerPlayNetworkHandler) (Object) this).player).isLoggedIn()) {
+        if (!LoginMod.getPlayer(((ServerPlayNetworkHandler) (Object) this).player).get()) {
             ci.cancel(); // TODO: breaking a block desyncs with server
         }
     }

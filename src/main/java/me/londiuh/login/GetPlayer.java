@@ -4,15 +4,16 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-public class GetPlayer extends HashMap<UUID, PlayerLogin> {
-    public PlayerLogin get(ServerPlayerEntity player) {
+public class GetPlayer extends HashMap<UUID, AtomicBoolean> {
+    public AtomicBoolean get(ServerPlayerEntity player) {
         UUID uuid = player.getUuid();
         if (containsKey(uuid)) {
             return super.get(uuid);
         }
-        PlayerLogin newPlayer = new PlayerLogin(player);
-        put(uuid, newPlayer);
-        return newPlayer;
+        AtomicBoolean b = new AtomicBoolean(false);
+        put(uuid, b);
+        return b;
     }
 }

@@ -1,7 +1,6 @@
 package me.londiuh.login.commands;
 
 import me.londiuh.login.LoginMod;
-import me.londiuh.login.PlayerLogin;
 import me.londiuh.login.RegisteredPlayersJson;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -26,8 +25,7 @@ public class LoginCommand {
                         if (!RegisteredPlayersJson.isPlayerRegistered(username)) {
                             ctx.getSource().sendFeedback(new LiteralText("§cYou're not registered! Use /register instead."), false);
                         } else if (RegisteredPlayersJson.isCorrectPassword(username, password)) {
-                            PlayerLogin playerLogin = LoginMod.getPlayer(ctx.getSource().getPlayer());
-                            playerLogin.setLoggedIn(true);
+                            LoginMod.getPlayer(ctx.getSource().getPlayer()).set(true);
                             ctx.getSource().sendFeedback(new LiteralText("§aLogged in."), false);
                             if (!player.isCreative()) {
                                 player.setInvulnerable(false);
